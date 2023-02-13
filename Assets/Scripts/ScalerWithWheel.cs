@@ -4,20 +4,16 @@ using UnityEngine;
 public class ScalerWithWheel : MonoBehaviour
 {
     [SerializeField] private float minScale, maxScale;
-    [SerializeField] private Transform followingObject, defaultFollowingObject;
-    
-    private Camera _camera;
+
     private CinemachineVirtualCamera _cinemachine;
+    [SerializeField] private CinemachineVirtualCamera fullScreenCinemachine;
     private float _currentScale, wheelInput;
 
-    private Vector3 defaultPosition = new Vector3(0, 0, -10);
-    private Vector3 _currentPosition;
+    private Vector3 zeroPosition = new Vector3(0,0,-10);
     private void Start()
     {
-        _camera = GetComponent<Camera>();
         _cinemachine = GetComponent<CinemachineVirtualCamera>();
         _currentScale = minScale;
-        _currentPosition = _cinemachine.Follow.gameObject.transform.position;
     }
 
     private void Update()
@@ -37,12 +33,22 @@ public class ScalerWithWheel : MonoBehaviour
     }
     private void CameraZooming()
     {
-        _camera.orthographicSize = _currentScale;
+        _cinemachine.m_Lens.OrthographicSize = _currentScale;
+        fullScreenCinemachine.m_Lens.OrthographicSize = _currentScale;
     }
 
     private void CameraPositioning()
     {
-        _cinemachine.Follow = _currentScale > maxScale * 0.66 ? defaultFollowingObject : followingObject;
-        transform.position = Vector3.Lerp(_currentPosition,defaultPosition,_currentScale/maxScale);
+        if (_currentScale > 0.75 * maxScale)
+        {
+            fullScreenCinemachine.Priority = 20;
+            _cinemachine.Priority = 10;
+            fullScreenCinemachine.transform.position = zeroPosition;
+        }
+        else
+        {
+            _cinemachine.Priority = 20;
+            fullScreenCinemachine.Priority = 10;
+        }
     }
 }
