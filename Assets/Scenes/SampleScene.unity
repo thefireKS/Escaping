@@ -795,7 +795,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &444662484
 GameObject:
@@ -1623,7 +1623,7 @@ GameObject:
   - component: {fileID: 965311604}
   - component: {fileID: 965311605}
   - component: {fileID: 965311606}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Notify Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

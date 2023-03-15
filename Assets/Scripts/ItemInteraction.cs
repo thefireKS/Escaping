@@ -21,7 +21,7 @@ public class ItemInteraction : MonoBehaviour
         _spriteRenderer.sprite = isActive ? highlitedSprite : _defaultSprite;
         notifyIcon.SetActive(isActive);
     }
-    private void OnMouseDown()
+    private void OnMouseDown ()
     {
         Destroy(gameObject);
     }
