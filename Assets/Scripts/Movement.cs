@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] private Transform spawnPosition;
     [SerializeField] private float speed;
     private Rigidbody2D _playerRb;
     private Animator _animator;
@@ -15,10 +16,12 @@ public class Movement : MonoBehaviour
     public static Action GoingUp;
     public static Action GoingDown;
 
-    void Start()
+    private void Start()
     {
         _playerRb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+
+        transform.position = spawnPosition.position;
     }
 
     private void Update()

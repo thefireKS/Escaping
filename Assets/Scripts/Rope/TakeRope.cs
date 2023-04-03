@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class TakeRope : MonoBehaviour
 {
+    [SerializeField] private Transform room;
+    [Space(5)]
     [Header("Transform controls of the wire")]
     [Space(5)]
     [SerializeField] private Transform defaultRopePosition;
@@ -23,6 +25,11 @@ public class TakeRope : MonoBehaviour
         rope = GetComponent<Rope>();
         player = GameObject.FindWithTag("Player").transform;
         takeRopePosition = GameObject.Find("Hands").transform;
+        
+        if (room.localScale.x < 0)
+        {
+            (rightWall, leftWall) = (leftWall, rightWall);
+        }
     }
 
     private void OnEnable()
