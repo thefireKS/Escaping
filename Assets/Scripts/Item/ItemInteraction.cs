@@ -6,13 +6,20 @@ public class ItemInteraction : MonoBehaviour
 {
     [SerializeField] private GameObject notifyIcon;
     [SerializeField] private Sprite highlitedSprite;
-    private SpriteRenderer _spriteRenderer;
+
     private Sprite _defaultSprite;
     private bool isActive;
+    
+    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
+    private ItemTriggerZone _itemTriggerZone;
 
     private void Start()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _itemTriggerZone = GetComponentInChildren<ItemTriggerZone>();
+
         _defaultSprite = _spriteRenderer.sprite;
     }
     public void ChangeActivity()
@@ -23,6 +30,9 @@ public class ItemInteraction : MonoBehaviour
     }
     private void OnMouseDown ()
     {
-        Destroy(gameObject);
+        Destroy(_itemTriggerZone);
+        ChangeActivity();
+        _animator.SetBool("IsBroken",true);
+        Destroy(this);
     }
 }
