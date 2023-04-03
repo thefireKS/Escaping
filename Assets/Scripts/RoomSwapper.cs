@@ -9,17 +9,12 @@ public class RoomSwapper : MonoBehaviour
     [SerializeField] private Transform[] rooms;
     private Vector3[] positions;
 
-    private void Start()
+    private void Awake()
     {
         positions = new Vector3[rooms.Length];
         for (var i = 0; i < rooms.Length; i++)
             positions[i] = rooms[i].position;
-        
-        foreach (var v3 in positions)
-        {
-            Debug.Log(v3);
-        }
-        
+
         RoomPositionRandomizer();
     }
 
@@ -28,10 +23,13 @@ public class RoomSwapper : MonoBehaviour
         foreach (var room in rooms)
         {
             var posIndex = Random.Range(0, positions.Length);
-            while (rooms[posIndex].position == Vector3.zero)
+            while (positions[posIndex] == Vector3.zero)
             {
                 posIndex = Random.Range(0, positions.Length);
             }
+
+            if (room.position.x > 0 && positions[posIndex].x < 0 || room.position.x < 0 && positions[posIndex].x > 0)
+                room.localScale = new Vector3(-1 * room.localScale.x, room.localScale.y);
             
             room.position = positions[posIndex];
             positions[posIndex] = Vector3.zero;

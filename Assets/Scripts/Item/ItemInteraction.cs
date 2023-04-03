@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ItemInteraction : MonoBehaviour
 {
+    [SerializeField] private Transform room;
+    [Space(5)]
     [SerializeField] private GameObject notifyIcon;
     [SerializeField] private Sprite highlitedSprite;
 
@@ -21,6 +23,11 @@ public class ItemInteraction : MonoBehaviour
         _itemTriggerZone = GetComponentInChildren<ItemTriggerZone>();
 
         _defaultSprite = _spriteRenderer.sprite;
+        
+        if (room.localScale.x < 0)
+        {
+            notifyIcon.transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
     public void ChangeActivity()
     {

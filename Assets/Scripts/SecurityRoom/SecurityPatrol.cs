@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SecurityPatrol : MonoBehaviour
 {
+    [SerializeField] private Transform room;
+    [Space(5)]
     [SerializeField] private Transform rightEdge;
     [SerializeField] private Transform leftEdge;
     [Space(5)]
@@ -50,6 +52,13 @@ public class SecurityPatrol : MonoBehaviour
 
         rEdg = rightEdge.position.x;
         lEdg = leftEdge.position.x;
+
+        if (room.localScale.x < 0)
+        {
+            (rPos, lPos) = (lPos, rPos);
+            (rEdg, lEdg) = (lEdg, rEdg);
+            transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y);
+        }
     }
 
     private void OnEnable() => CoffeeCode.machineIsBroken += GoToRepair;

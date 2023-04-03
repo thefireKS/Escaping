@@ -597,6 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebff6ea65a972c4cbbc54f18a0d67e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  room: {fileID: 968175687}
   notifyIcon: {fileID: 593850762}
   highlitedSprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
 --- !u!1 &99068161
@@ -1872,7 +1873,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0.91}
-  m_SizeDelta: {x: 3, y: 1}
+  m_SizeDelta: {x: 4, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &315590193
 MonoBehaviour:
@@ -2332,6 +2333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebff6ea65a972c4cbbc54f18a0d67e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  room: {fileID: 948702377}
   notifyIcon: {fileID: 103085791}
   highlitedSprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
 --- !u!1 &390039103
@@ -2365,6 +2367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebff6ea65a972c4cbbc54f18a0d67e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  room: {fileID: 1330078312}
   notifyIcon: {fileID: 1204819084}
   highlitedSprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
 --- !u!4 &390039106
@@ -4661,6 +4664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebff6ea65a972c4cbbc54f18a0d67e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  room: {fileID: 1330078312}
   notifyIcon: {fileID: 315590191}
   highlitedSprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
 --- !u!1 &742784943
@@ -6753,6 +6757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebff6ea65a972c4cbbc54f18a0d67e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  room: {fileID: 1315384173}
   notifyIcon: {fileID: 757990371}
   highlitedSprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
 --- !u!1 &1001192037
@@ -8206,6 +8211,7 @@ GameObject:
   - component: {fileID: 1244641051}
   - component: {fileID: 1244641052}
   - component: {fileID: 1244641053}
+  - component: {fileID: 1244641054}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -8306,6 +8312,57 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!331 &1244641054
+SpriteMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244641050}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_MaskAlphaCutoff: 0.2
+  m_FrontSortingLayerID: 0
+  m_BackSortingLayerID: 0
+  m_FrontSortingLayer: 0
+  m_BackSortingLayer: 0
+  m_FrontSortingOrder: 0
+  m_BackSortingOrder: 0
+  m_IsCustomRangeActive: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1260728191
 GameObject:
   m_ObjectHideFlags: 0
@@ -10324,6 +10381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066e93e5341239b43b06335b0935c5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  room: {fileID: 2054969227}
   rightEdge: {fileID: 2088806513}
   leftEdge: {fileID: 2000443702}
   rightPatrolPoint: {fileID: 594416474}
@@ -11225,6 +11283,7 @@ GameObject:
   - component: {fileID: 1900170898}
   - component: {fileID: 1900170899}
   - component: {fileID: 1900170900}
+  - component: {fileID: 1900170901}
   m_Layer: 0
   m_Name: Floor UP
   m_TagString: Untagged
@@ -11325,6 +11384,57 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!331 &1900170901
+SpriteMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900170897}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_MaskAlphaCutoff: 0.2
+  m_FrontSortingLayerID: 0
+  m_BackSortingLayerID: 0
+  m_FrontSortingLayer: 0
+  m_BackSortingLayer: 0
+  m_FrontSortingOrder: 0
+  m_BackSortingOrder: 0
+  m_IsCustomRangeActive: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1921492544
 GameObject:
   m_ObjectHideFlags: 0
@@ -12140,6 +12250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521bf30d04402624195572b2002f8137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  room: {fileID: 2054969227}
   defaultRopePosition: {fileID: 1454970669}
   rightWall: {fileID: 2088806513}
   leftWall: {fileID: 2000443702}
