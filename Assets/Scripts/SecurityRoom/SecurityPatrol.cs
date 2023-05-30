@@ -37,12 +37,15 @@ public class SecurityPatrol : MonoBehaviour
     private Vector3 defaultPosition;
 
     private Rigidbody2D rb2d;
+    private Animator animator;
 
     public static Action dropHook;
 
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
+        
         defaultPosition = transform.position;
         
         resultSpeed = speed;
@@ -137,8 +140,7 @@ public class SecurityPatrol : MonoBehaviour
     private void Repair()
     {
         if(!isRepairing) return;
-
-        Debug.Log("We were here");
+        
         
         var xCof = coffeeMachine.transform.position.x;
         
@@ -149,6 +151,7 @@ public class SecurityPatrol : MonoBehaviour
         if (diff <= 0.1f)
         {
             rb2d.velocity = Vector2.zero;
+            animator.SetBool("IsRepairing",true);
             Destroy(this);
         }
 
@@ -162,7 +165,7 @@ public class SecurityPatrol : MonoBehaviour
         
         resultSpeed = -1 * resultSpeed;
         var gfx = GFX.transform;
-        gfx.localScale = new Vector3(-1 * gfx.localScale.x, 1, 1);
+        gfx.localScale = new Vector3(-1 * gfx.localScale.x, gfx.localScale.y, gfx.localScale.z);
         
         rotateTimer = 0f;
     }
