@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,12 +24,14 @@ public class ItemInteraction : MonoBehaviour
         _itemTriggerZone = GetComponentInChildren<ItemTriggerZone>();
 
         _defaultSprite = _spriteRenderer.sprite;
+        _animator.enabled = false;
         
         if (room.localScale.x < 0)
         {
             notifyIcon.transform.localScale = new Vector3(-1, 1, 1);
         }
     }
+    
     public void ChangeActivity()
     {
         isActive = !isActive;
@@ -39,6 +42,7 @@ public class ItemInteraction : MonoBehaviour
     {
         Destroy(_itemTriggerZone);
         ChangeActivity();
+        _animator.enabled = true;
         _animator.SetBool("IsBroken",true);
         Destroy(this);
     }

@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     private Animator _animator;
     private LadderSystem _ladder;
 
-    private Vector2 _move;
+    private Vector2 _move, defaultScale, defaultScaleFlipped;
     private float _climb, climbingTimer = 0;
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
@@ -22,6 +22,9 @@ public class Movement : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         transform.position = spawnPosition.position;
+
+        defaultScale = transform.localScale;
+        defaultScaleFlipped = new Vector2(defaultScale.x * -1, defaultScale.y);
     }
 
     private void Update()
@@ -44,11 +47,11 @@ public class Movement : MonoBehaviour
     }
     
     private void RightFacing()
-    { 
-        if (Input.GetAxisRaw("Horizontal") > 0) 
-            transform.localScale = new Vector3(2, 2, 2);
+    {
+        if (Input.GetAxisRaw("Horizontal") > 0)
+            transform.localScale = defaultScale;
         else if (Input.GetAxisRaw("Horizontal") < 0)
-            transform.localScale = new Vector3(-2, 2, 2);
+            transform.localScale = defaultScaleFlipped;
     }
 
     private void Laddering()

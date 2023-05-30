@@ -8,19 +8,22 @@ public class Tumbler : MonoBehaviour
 
     [SerializeField] private bool shouldDisableCamera;
     [SerializeField] private bool shouldEnableLights;
-    [SerializeField] private Transform button;
 
-    private float buttonYPos;
+    private Animator _animator;
+    private bool _isEnabled = false;
+
+    private string _animName;
 
     private void Start()
     {
-        buttonYPos = button.transform.localPosition.y;
+        _animator = GetComponent<Animator>();
+        _animName = "L" + transform.name[^1];
     }
 
     private void OnMouseDown()
     {
-        button.localPosition = new Vector3(0, buttonYPos * -1);
-        buttonYPos *= -1;
+        _animator.Play(_isEnabled ? _animName + " R" : _animName);
+        _isEnabled = !_isEnabled;
         if(shouldDisableCamera)
             disableCamera?.Invoke();
         if(shouldEnableLights)
