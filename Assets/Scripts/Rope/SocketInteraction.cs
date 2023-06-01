@@ -5,34 +5,20 @@ using UnityEngine;
 
 public class SocketInteraction : MonoBehaviour
 {
-    private bool isInsideInteractionZone = false;
-    private GameObject player = null;
+    private GameObject hook = null;
+    private GameObject wire = null;
 
     public static Action SocketIsPlugged;
-    private void Update()
+    private void Awake()
     {
-        if(!isInsideInteractionZone) return;
-
-        if (!Input.GetKey(KeyCode.E)) return;
-        
-        var hook = player.transform.Find("Hook");
-        
-        if(hook == null) return;
+        wire = GameObject.FindGameObjectWithTag("Wire");
+        hook = GameObject.FindGameObjectWithTag("Hook");
+    }
+    public void Plug()
+    {
+        if (!wire.GetComponent<TakeRope>().isHoldingRope) return;
         hook.gameObject.transform.SetParent(transform);
         hook.gameObject.transform.localPosition = Vector3.zero;
         SocketIsPlugged?.Invoke();
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if(!col.gameObject.CompareTag("Player")) return;
-        isInsideInteractionZone = true;
-        player = col.gameObject;
-    }
-    
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        isInsideInteractionZone = false;
-        player = null;
     }
 }

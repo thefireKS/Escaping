@@ -4,30 +4,36 @@ public class Exit : MonoBehaviour
 {
     private Transform card;
 
-    private bool isNextToTheDoor;
     void Start()
     {
         var hands = GameObject.FindWithTag("Player").transform.Find("Hands");
         card = hands.Find("Card");
     }
-    
-    private void Update()
+    public System.Collections.IEnumerator Banish(SpriteRenderer Target)
     {
-        if(!isNextToTheDoor) return;
-        if(!card.gameObject.activeSelf) return;
-        
-        if(!Input.GetKey(KeyCode.E)) return;
-        Debug.Log("Victory!");
-    }
+        float delta = 0.1f;
+        while (Target.color.a > 0)
+        {
+            yield return new WaitForSeconds(1f);
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if(!col.CompareTag("Player")) return;
-        isNextToTheDoor = true;
+            Color newColor = Target.color;
+            newColor.a -= delta;
+            Target.color = newColor;
+            Target.transform.position = new Vector3(transform.position.x, Target.transform.position.y, Target.transform.position.z);
+        }
     }
-
-    private void OnTriggerExit2D(Collider2D other)
+    public void TryOpen()
     {
-        isNextToTheDoor = false;
+        if (!card.gameObject.activeSelf) return;
+       
+        StartCoroutine(Open());
+    }
+    public System.Collections.IEnumerator Open()
+    {
+        yield return new WaitForSeconds(1f);
+        GetComponent<Interaction>().StateActivation("Opening");
+        yield return StartCoroutine(Banish(GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>()));
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 }

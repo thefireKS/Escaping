@@ -4,7 +4,7 @@ using UnityEngine;
 public class KeyInteraction : MonoBehaviour
 {
     public static Action keyInInventory;
-    private void OnMouseDown()
+    public void PickUp()
     {
         keyInInventory?.Invoke();
         Destroy(gameObject);

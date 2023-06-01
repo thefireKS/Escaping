@@ -4,6 +4,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private Transform door;
     private Transform key;
+    [SerializeField] private UnityEngine.Events.UnityEvent m_WhenOpened;
 
     private bool isNextToTheDoor;
     void Start()
@@ -12,24 +13,15 @@ public class Door : MonoBehaviour
         key = hands.Find("Key");
     }
 
-    private void Update()
+    public void CheckKey()
     {
-        if(!isNextToTheDoor) return;
         if(!key.gameObject.activeSelf) return;
-        
-        if(!Input.GetKey(KeyCode.E)) return;
-        door.gameObject.SetActive(false);
+        StartCoroutine(Delay());
+        m_WhenOpened.Invoke();
         Destroy(this);
     }
-
-    private void OnTriggerEnter2D(Collider2D col)
+    public System.Collections.IEnumerator Delay()
     {
-        if(!col.CompareTag("Player")) return;
-        isNextToTheDoor = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        isNextToTheDoor = false;
+        yield return new WaitForSeconds(0.04f);
     }
 }

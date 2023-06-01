@@ -12,13 +12,12 @@ public class DetectionZone : MonoBehaviour
         animator = GetComponentInParent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    public void Detected()
     {
-        if (!col.CompareTag("Player")) return;
         animator.SetBool("Detected",true);
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    public void unDetected()
     {
         animator.SetBool("Detected",false);
     }

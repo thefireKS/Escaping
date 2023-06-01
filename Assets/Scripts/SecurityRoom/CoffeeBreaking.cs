@@ -36,9 +36,10 @@ public class CoffeeBreaking : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(spriteRenderer.sprite == defaultSprite) return;
-        
         CoffeeBreakingMiniGame.SetActive(true);
+        if (spriteRenderer.sprite == defaultSprite) return;
+        
+        
     }
 
     private void ChangeActivity()
