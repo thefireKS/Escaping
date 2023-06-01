@@ -1,16 +1,15 @@
 using System;
-using TMPro;
 using UnityEngine;
 
 public class CoffeeCode : MonoBehaviour
 {
     [SerializeField] private GameObject cup;
     [SerializeField] private GameObject coffeeStream;
-    [SerializeField] private GameObject wrongCoffeeStream;
     [SerializeField] private float cupDelay;
     [Space(5)]
-    [SerializeField] private TMP_Text message;
-
+    private InteractionUI selfStatemanager;
+    private InteractionUI cupStatemanager;
+    private InteractionUI streamStatemanager;
     private const string TrueCode = "5738";
     private string currentCode = "";
 
@@ -18,7 +17,13 @@ public class CoffeeCode : MonoBehaviour
     private bool shouldCount;
     
     public static Action machineIsBroken;
-    
+    public UnityEngine.Events.UnityEvent machineIsBrokening;
+    private void Awake()
+    {
+        selfStatemanager = GetComponent<InteractionUI>();
+        cupStatemanager = cup.GetComponent<InteractionUI>();
+        streamStatemanager = coffeeStream.GetComponent<InteractionUI>();
+    }
     public void AddNumberToCode(int num)
     {
         currentCode += num.ToString();
@@ -37,28 +42,38 @@ public class CoffeeCode : MonoBehaviour
 
     public void BreakMachine()
     {
-        cup.gameObject.SetActive(false);
-        coffeeStream.SetActive(false);
-        message.text = "Слишком горячий!";
-        if (currentCode != TrueCode) return;
-        wrongCoffeeStream.SetActive(true);
-        message.text = "Ошибка!";
+        cupStatemanager.StateActivation("Throw");
+        if (currentCode != TrueCode)
+        {
+            selfStatemanager.StateActivation("Warning");
+            streamStatemanager.StateActivation("Null");
+            return;
+        }
+        selfStatemanager.StateActivation("Error");
         machineIsBroken?.Invoke();
+        machineIsBrokening?.Invoke();
+        coffeeStream.transform.localScale *= 2;
+        streamStatemanager.StateActivation("EndlessPour");
         Destroy(this);
     }
 
     private void dropCup()
     {
-        cup.SetActive(true);
-        coffeeStream.SetActive(true);
+        cupStatemanager.StateActivation("Init");
+        StartCoroutine(Delay());
+        
+    }
+    public System.Collections.IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        streamStatemanager.StateActivation("Pour");
         shouldCount = false;
     }
-
     private void Update()
     {
         if(!shouldCount) return;
         cupTimer += Time.deltaTime;
-        if(cupTimer > cupDelay)
+        if (cupTimer > cupDelay)
             dropCup();
     }
 }

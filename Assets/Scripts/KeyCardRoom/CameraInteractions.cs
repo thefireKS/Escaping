@@ -10,7 +10,7 @@ public class CameraInteractions : MonoBehaviour
 
     private void OnDisable() => Tumbler.disableCamera -= DisableCamera;
     
-    private BoxCollider2D visionZone;
+    [SerializeField]private BoxCollider2D visionZone;
 
     private void Start()
     {

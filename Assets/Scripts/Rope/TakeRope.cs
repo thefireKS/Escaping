@@ -11,8 +11,7 @@ public class TakeRope : MonoBehaviour
     [SerializeField] private Transform rightWall;
     [SerializeField] private Transform leftWall;
 
-    private bool isInsideInteractionZone = false;
-    private bool isHoldingRope = false;
+    public bool isHoldingRope = false;
     
 
     private Transform player;
@@ -43,20 +42,16 @@ public class TakeRope : MonoBehaviour
         SocketInteraction.SocketIsPlugged -= PlugIn;
         SecurityPatrol.dropHook -= SetRopeOnDefaultPlace;
     }
-
     private void Update()
     {
-        RopePositionSetter();
-        
-        if(!isInsideInteractionZone) return;
-
-        if (Input.GetKeyDown(KeyCode.E))
-            isHoldingRope = !isHoldingRope;
-
         if (isHoldingRope)
             GiveRopeInHands();
         else
             SetRopeOnDefaultPlace();
+    }
+    public void Taking()
+    {
+        isHoldingRope = !isHoldingRope;
     }
 
     private void PlugIn()
@@ -84,16 +79,5 @@ public class TakeRope : MonoBehaviour
         
         if(hookX > rightWall.position.x || hookX < leftWall.position.x)
             SetRopeOnDefaultPlace();
-    }
-    
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (!col.gameObject.CompareTag("Player")) return;
-        isInsideInteractionZone = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        isInsideInteractionZone = false;
     }
 }

@@ -6,7 +6,9 @@ public class FLInventory : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryButton;
     [SerializeField] private GameObject flashLight;
-
+    [SerializeField] private Sprite Alternate;
+    [SerializeField] private Sprite Base;
+    [SerializeField] private UnityEngine.UI.Image Where;
     private void OnEnable() => FLInteraction.flashlightInInventory += ActivateInventorySlot;
     
     private void OnDisable() => FLInteraction.flashlightInInventory -= ActivateInventorySlot;
@@ -14,9 +16,10 @@ public class FLInventory : MonoBehaviour
     {
         inventoryButton.SetActive(true);
     }
-
+    
     public void TakeFlashLightInHands()
     {
         flashLight.SetActive(!flashLight.activeSelf);
+        Where.sprite = flashLight.activeSelf ? Alternate : Base;
     }
 }
