@@ -4,11 +4,13 @@ using UnityEngine;
 public class CoffeeCode : MonoBehaviour
 {
     [SerializeField] private GameObject cup;
+    [SerializeField] private GameObject falsecup;
     [SerializeField] private GameObject coffeeStream;
     [SerializeField] private float cupDelay;
     [Space(5)]
     private InteractionUI selfStatemanager;
     private InteractionUI cupStatemanager;
+    private InteractionUI falsecupStatemanager;
     private InteractionUI streamStatemanager;
     private const string TrueCode = "5738";
     private string currentCode = "";
@@ -23,6 +25,7 @@ public class CoffeeCode : MonoBehaviour
         selfStatemanager = GetComponent<InteractionUI>();
         cupStatemanager = cup.GetComponent<InteractionUI>();
         streamStatemanager = coffeeStream.GetComponent<InteractionUI>();
+        falsecupStatemanager = falsecup.GetComponent<InteractionUI>();
     }
     public void AddNumberToCode(int num)
     {
@@ -42,7 +45,9 @@ public class CoffeeCode : MonoBehaviour
 
     public void BreakMachine()
     {
-        cupStatemanager.StateActivation("Throw");
+        cup.SetActive(false);
+        falsecup.SetActive(true);
+        falsecupStatemanager.StateActivation("Throw");
         if (currentCode != TrueCode)
         {
             selfStatemanager.StateActivation("Warning");
@@ -59,6 +64,8 @@ public class CoffeeCode : MonoBehaviour
 
     private void dropCup()
     {
+        falsecup.SetActive(false);
+        cup.SetActive(true);
         cupStatemanager.StateActivation("Init");
         StartCoroutine(Delay());
         
