@@ -17,7 +17,7 @@ public class CoffeeCode : MonoBehaviour
 
     private float cupTimer = 0f;
     private bool shouldCount;
-    
+
     public static Action machineIsBroken;
     public UnityEngine.Events.UnityEvent machineIsBrokening;
     private void Awake()
@@ -36,10 +36,10 @@ public class CoffeeCode : MonoBehaviour
             currentCode = "";
             currentCode += num.ToString();
         }
-        
+
         cupTimer = 0f;
         shouldCount = true;
-        
+
         Debug.Log(currentCode);
     }
 
@@ -52,6 +52,7 @@ public class CoffeeCode : MonoBehaviour
         {
             selfStatemanager.StateActivation("Warning");
             streamStatemanager.StateActivation("Null");
+            currentCode = "";
             return;
         }
         selfStatemanager.StateActivation("Error");
@@ -61,14 +62,13 @@ public class CoffeeCode : MonoBehaviour
         streamStatemanager.StateActivation("EndlessPour");
         Destroy(this);
     }
-
     private void dropCup()
     {
         falsecup.SetActive(false);
         cup.SetActive(true);
         cupStatemanager.StateActivation("Init");
         StartCoroutine(Delay());
-        
+
     }
     public System.Collections.IEnumerator Delay()
     {
@@ -78,7 +78,7 @@ public class CoffeeCode : MonoBehaviour
     }
     private void Update()
     {
-        if(!shouldCount) return;
+        if (!shouldCount) return;
         cupTimer += Time.deltaTime;
         if (cupTimer > cupDelay)
             dropCup();
