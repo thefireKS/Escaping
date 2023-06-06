@@ -59,7 +59,7 @@ public class InteractionUI : MonoBehaviour
     }
     public void ForceStateActivation(string nameTarget)
     {
-        Debug.Log(transform.name + " - State Search try - " + nameTarget);
+        //Debug.Log(transform.name + " - State Search try - " + nameTarget);
         foreach (State current in States)
         {
             if (nameTarget.Equals(current.KeyName))
@@ -70,7 +70,7 @@ public class InteractionUI : MonoBehaviour
     }
     public void ForceStateActivation(State Target)
     {
-        Debug.Log(transform.name + " - State activation " + Target.KeyName);
+        //Debug.Log(transform.name + " - State activation " + Target.KeyName);
         inProcess = true;
         currentState = Target;
         Target.m_WhenStateActivated.Invoke();

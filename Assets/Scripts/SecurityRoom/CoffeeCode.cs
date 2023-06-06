@@ -59,7 +59,7 @@ public class CoffeeCode : MonoBehaviour
         machineIsBroken?.Invoke();
         machineIsBrokening?.Invoke();
         coffeeStream.transform.localScale *= 2;
-        streamStatemanager.StateActivation("EndlessPour");
+        streamStatemanager.ForceStateActivation("EndlessPour");
         Destroy(this);
     }
     private void dropCup()
