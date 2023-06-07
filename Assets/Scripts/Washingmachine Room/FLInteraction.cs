@@ -6,7 +6,7 @@ using UnityEngine;
 public class FLInteraction : MonoBehaviour
 {
     public static Action flashlightInInventory;
-    
+    [SerializeField] private Vector3 New;
 
     private void OnEnable() => SocketInteraction.SocketIsPlugged += ChangePickable;
 
@@ -15,6 +15,7 @@ public class FLInteraction : MonoBehaviour
     private void ChangePickable()
     {
         canPickUp = true;
+        transform.position = transform.parent.transform.position + New;
     }
     private void OnMouseDown()
     {

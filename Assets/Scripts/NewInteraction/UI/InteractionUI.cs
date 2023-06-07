@@ -39,6 +39,7 @@ public class InteractionUI : MonoBehaviour
 
     public void StateActivation(string nameTarget)
     {
+        //Debug.Log(transform.name + " - State Search try - " + nameTarget);
         foreach (State current in States)
         {
             if (nameTarget.Equals(current.KeyName))
@@ -49,13 +50,32 @@ public class InteractionUI : MonoBehaviour
     }
     public void StateActivation(State Target)
     {
+        //Debug.Log(transform.name + "State activation try - " + Target.KeyName + ". Bool is - " + inProcess + " or " + (currentState.Tag == Tags.Unchangeable));
         if (inProcess || currentState.Tag == Tags.Unchangeable) return;
         inProcess = true;
         currentState = Target;
         Target.m_WhenStateActivated.Invoke();
         StartCoroutine(StateActivationAfterAnimation(Target));
     }
-
+    public void ForceStateActivation(string nameTarget)
+    {
+        //Debug.Log(transform.name + " - State Search try - " + nameTarget);
+        foreach (State current in States)
+        {
+            if (nameTarget.Equals(current.KeyName))
+            {
+                ForceStateActivation(current);
+            }
+        }
+    }
+    public void ForceStateActivation(State Target)
+    {
+        //Debug.Log(transform.name + " - State activation " + Target.KeyName);
+        inProcess = true;
+        currentState = Target;
+        Target.m_WhenStateActivated.Invoke();
+        StartCoroutine(StateActivationAfterAnimation(Target));
+    }
     private IEnumerator StateActivationAfterAnimation(State Target)
     {
         if (currentState.Tag == Tags.Unchangeable) GIFAnimator.loop = true;

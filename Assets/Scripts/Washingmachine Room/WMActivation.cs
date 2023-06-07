@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class WMActivation : MonoBehaviour
 {
-    private Animator _animator;
+    private Interaction _animator;
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponent<Interaction>();
     }
 
     private void OnEnable() => SocketInteraction.SocketIsPlugged += MachineIsEnabled;
@@ -18,6 +18,6 @@ public class WMActivation : MonoBehaviour
     
     private void MachineIsEnabled()
     {
-        _animator.SetBool("IsWorking",true);
+        _animator.StateActivation("IsWorking");
     }
 }
