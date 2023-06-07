@@ -4280,7 +4280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frame: []
-  framePerSecond: 15
+  framePerSecond: 20
   loop: 0
   render: {fileID: 0}
 --- !u!61 &836695573
