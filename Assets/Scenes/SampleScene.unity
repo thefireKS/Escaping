@@ -10323,7 +10323,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: e7266d39d8b3c154ca48bd324826409f, type: 3}
     - {fileID: 21300000, guid: aea7331d232083d4a9512dae89dbd30b, type: 3}
     - {fileID: 21300000, guid: 35bc616d23a40f24abcfc77cd80098bb, type: 3}
-    - {fileID: 21300000, guid: 09e83becae4d95b41a3b9017e9d07502, type: 3}
     m_WhenStateActivated:
       m_PersistentCalls:
         m_Calls: []
@@ -10347,7 +10346,7 @@ MonoBehaviour:
     Tag: 5
     NextState: 
     Animation:
-    - {fileID: 21300000, guid: 09e83becae4d95b41a3b9017e9d07502, type: 3}
+    - {fileID: 21300000, guid: 35bc616d23a40f24abcfc77cd80098bb, type: 3}
     m_WhenStateActivated:
       m_PersistentCalls:
         m_Calls: []
