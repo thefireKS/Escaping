@@ -3,11 +3,22 @@ using UnityEngine;
 public class Exit : MonoBehaviour
 {
     private Transform card;
-
+    private SpriteRenderer StateManager;
+    [SerializeField]
+    private Sprite Eye, Inter;
+    public bool CardInInventory = false;
     void Start()
     {
         var hands = GameObject.FindWithTag("Player").transform.Find("Hands");
         card = hands.Find("Card");
+        StateManager = GetComponent<SpriteRenderer>();
+    }
+    private void OnEnable() => CardInteraction.cardInInventory += ActivateInventorySlot;
+
+    private void OnDisable() => CardInteraction.cardInInventory -= ActivateInventorySlot;
+    private void ActivateInventorySlot()
+    {
+        CardInInventory = true;
     }
     public System.Collections.IEnumerator Banish(SpriteRenderer Target)
     {
@@ -36,4 +47,10 @@ public class Exit : MonoBehaviour
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
+    public void Switcher()
+    {
+        if (CardInInventory) StateManager.sprite= Inter;
+        else StateManager.sprite= Eye;
+    }
+
 }
